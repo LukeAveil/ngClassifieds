@@ -2,7 +2,7 @@
 
   angular
     .module("ngClassifieds")
-    .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav) {
+    .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav, $mdToast) {
 
       classifiedsFactory.getClassifieds().then(function(classifieds) {
         $scope.classifieds = classifieds.data;
@@ -28,6 +28,12 @@
           $scope.classifieds.push(classified);
           $scope.classified = {};
           $scope.closeSidebar();
+          $mdToast.show(
+            $mdToast.simple()
+            .content("classified Saved!")
+            .position('top, right')
+            .hideDelay(3000)
+          );
         }
       };
 
