@@ -28,14 +28,31 @@
           $scope.classifieds.push(classified);
           $scope.classified = {};
           $scope.closeSidebar();
-          $mdToast.show(
-            $mdToast.simple()
-            .content("classified Saved!")
-            .position('top, right')
-            .hideDelay(3000)
-          );
+          showToast("Classified Saved!");
         }
       };
+
+      $scope.editClassified = function(classified) {
+        $scope.editing = true;
+        $scope.openSidebar();
+        $scope.classified = classified;
+      };
+
+      $scope.saveEdit = function() {
+        $scope.editing = false;
+        $scope.classified = {};
+        $scope.closeSidebar();
+        showToast("Edit Saved!");
+      };
+
+      function showToast() {
+        $mdToast.show(
+          $mdToast.simple()
+          .content("classified Saved!")
+          .position('top, right')
+          .hideDelay(3000)
+        );
+      }
 
     });
 })();
